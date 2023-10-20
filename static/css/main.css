@@ -1,0 +1,95 @@
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+main > .container {
+  padding: 80px 15px 0;
+}
+
+.question {
+    border: 1px solid grey;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.answer {
+    border: 1px solid grey;
+    margin-top: 30px;
+    margin-left: 30px;
+    padding: 10px;
+}
+
+.question-image {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 20px;
+}
+
+.answer-image {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 20px;
+}
+
+.avatar_mini {
+    max-width: 50px;
+    max-height: 50px;
+    padding: 5px;
+    border: 1px solid grey;
+}
+
+.question-title {
+    font-size: 20px;
+    font-family: Helvetica;
+    font-weight: bold;
+}
+
+.tags {
+    margin: 5px;
+    border: 0px;
+}
+
+.page-title {
+    font-size: 40px;
+    font-family: Helvetica;
+    font-weight: bold;
+}
+
+.page-subtitle {
+    font-size: 30px;
+    font-family: Helvetica;
+}
+
+.icon {
+    border: 1px solid grey;
+    padding: 5px;
+    margin:10px 5px 10px 5px;
+    width: 30px;
+    height: 30px;
+
+}
+
+.icon-answer {
+    border: 1px solid grey;
+    padding: 5px;
+    margin:5px 5px 5px 5px;
+    width: 25px;
+    height: 25px;
+
+}
+
+.navig-item-text {
+    font-size: 15px;
+    font-family: Helvetica;
+    font-weight: bold;
+}
+
+.nav-item-href {
+    font-size: 15px;
+    padding:0px;
+}
+
+.text_input {
+    margin: 20px;
+}

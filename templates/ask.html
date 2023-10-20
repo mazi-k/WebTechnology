@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ask</title>
+</head>
+
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous">
+    </script>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/main.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">AskMe</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-4 mb-md-0">
+                    <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Ask</button>
+                </ul>
+
+                <form class="d-flex">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <a class="nav-link active nav-item-href" aria-current="page" href="#">log in</a>
+                            </div>
+                            <div class="col-6">
+                                <a class="nav-link active nav-item-href" aria-current="page" href="#">register</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<!-- Begin page content -->
+<main class="flex-shrink-0" style="margin-top: 50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-md-auto page-title">
+                        <h1>New question</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-group mb-3 text_input">
+                        <span class="input-group-text" id="title-desc">Title</span>
+                        <input type="text" class="form-control" id="title" aria-describedby="title">
+                    </div>
+
+                    <div class="input-group text_input">
+                        <span class="input-group-text">Text</span>
+                        <textarea class="form-control" aria-label="text"></textarea>
+                    </div>
+
+                    <div class="input-group mb-3 text_input">
+                        <span class="input-group-text" id="tags-desc">Tags</span>
+                        <input type="text" class="form-control" id="tags" aria-describedby="tags">
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-lg" style="margin: 40px; max-width: 100px;">
+                        Ask
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="col-4">
+                <div class="row" style="margin-left: 50px;">
+                    <h2>Popular tags</h2>
+                    <div>
+                        <span class="tags btn btn-outline-secondary">Python</span>
+                        <span class="tags btn btn-outline-primary">CSS</span>
+                        <span class="tags btn btn-outline-success">HTML</span>
+                        <span class="tags btn btn-outline-danger">Django</span>
+                        <span class="tags btn btn-outline-warning">Firefox</span>
+                        <span class="tags btn btn-outline-dark">Mail.ru</span>
+
+                    </div>
+                    <div style="margin-top: 50px;">
+                        <h2>Best members</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="">pupkin</a></li>
+                            <li class="list-group-item"><a href="">zalupkin</a></li>
+                            <li class="list-group-item"><a href="">nagibkin</a></li>
+                            <li class="list-group-item"><a href="">sadipkin</a></li>
+                            <li class="list-group-item"><a href="">gadupkin</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">2023</span>
+    </div>
+</footer>
+
+
+<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
