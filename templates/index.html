@@ -1,260 +1,155 @@
-<!doctype html>
-<html lang="en" class="h-100">
-<head>
-    <title>Home</title>
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+{% extends 'layouts/base.html' %}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+{% block title %}
+<title>Home</title>
+{% endblock %}
 
-    </style>
+{% block content %}
 
-    <!-- Custom styles for this template -->
-    <link href="../static/css/main.css" rel="stylesheet">
-</head>
-<body class="d-flex flex-column h-100">
+<div class="row">
+    <div class="col-md-auto page-title">
+        <h1>New questions</h1>
+    </div>
 
-<header>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">AskMe</a>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-4 mb-md-0">
-                    <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Ask</button>
-                </ul>
+    <div class="col-md-auto page-subtitle">
+        <a href="">Hot questions</a>
+    </div>
+</div>
+<div class="row question">
+    <div class="col-3">
+        <img src="../static/img/image.png" alt="" class="question-image">
 
-                <form class="d-flex">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-6">
-                                    <img src="../static/img/image.png" alt="" class="avatar_mini">
-                                </div>
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="nav-item-text" style="margin:0px;">Dr. Pepper</div>
-                                        <div class="col-6">
-                                            <a class="nav-link active nav-item-href" aria-current="page" href="#">settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a class="nav-link active nav-item-href" aria-current="page" href="#">log
-                                                out</a>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<!-- Begin page content -->
-<main class="flex-shrink-0">
-    <div class="container">
         <div class="row">
-            <div class="col-8">
-                <div class="row">
-                    <div class="col-md-auto page-title">
-                        <h1>New questions</h1>
-                    </div>
-
-                    <div class="col-md-auto page-subtitle">
-                        <a href="">Hot questions</a>
-                    </div>
-                </div>
-
-
-                <div class="row question">
-                    <div class="col-3">
-                        <img src="../static/img/image.png" alt="" class="question-image">
-
-                        <div class="row">
-                            <div class="col-6">
-                                <div style="font-size: 35px; text-align:center;">4</div>
-                            </div>
-                            <div class="col-6" style="text-align:left;">
-                                <div class="row">
-                                    <img src="../static/img/arrow_up.svg" class="icon">
-                                    <img src="../static/img/arrow_down.svg" class="icon">
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-9">
-                        <div class="question-title"><a href="">First Question</a></div>
-                        <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                            has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. It was popularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum.
-
-                            <div class="row">
-                                <div class="col-md-auto">
-                                    <a href="">answers (3)</a>
-                                </div>
-                                <div class="col-md-auto">
-                                    Tags: <a href="">tag1</a> <a href="">tag2</a> <a href="">tag3</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row question">
-                    <div class="col-3">
-                        <img src="../static/img/image.png" alt="" class="question-image">
-
-                        <div class="row">
-                            <div class="col-6">
-                                <div style="font-size: 35px; text-align:center;">4</div>
-                            </div>
-                            <div class="col-6" style="text-align:left;">
-                                <div class="row">
-                                    <img src="../static/img/arrow_up.svg" class="icon">
-                                    <img src="../static/img/arrow_down.svg" class="icon">
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-9">
-                        <div class="question-title"><a href="">Second Question</a></div>
-                        <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                            has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. It was popularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum.
-
-                            <div class="row">
-                                <div class="col-md-auto">
-                                    <a href="">answers (3)</a>
-                                </div>
-                                <div class="col-md-auto">
-                                    Tags: <a href="">tag1</a> <a href="">tag2</a> <a href="">tag3</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row question">
-                    <div class="col-3">
-                        <img src="../static/img/image.png" alt="" class="question-image">
-
-                        <div class="row">
-                            <div class="col-6">
-                                <div style="font-size: 35px; text-align:center;">4</div>
-                            </div>
-                            <div class="col-6" style="text-align:left;">
-                                <div class="row">
-                                    <img src="../static/img/arrow_up.svg" class="icon">
-                                    <img src="../static/img/arrow_down.svg" class="icon">
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-9">
-                        <div class="question-title"><a href="">Third Question</a></div>
-                        <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                            has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. It was popularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum.
-
-                            <div class="row">
-                                <div class="col-md-auto">
-                                    <a href="">answers (3)</a>
-                                </div>
-                                <div class="col-md-auto">
-                                    Tags: <a href="">tag1</a> <a href="">tag2</a> <a href="">tag3</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="col-6">
+                <div style="font-size: 35px; text-align:center;">4</div>
             </div>
+            <div class="col-6" style="text-align:left;">
+                <div class="row">
+                    <img src="../static/img/arrow_up.svg" class="icon">
+                    <img src="../static/img/arrow_down.svg" class="icon">
+                </div>
 
-            <div class="col-4">
-                <div class="row" style="margin-left: 50px;">
-                    <h2>Popular tags</h2>
-                    <div>
-                        <span class="tags btn btn-outline-secondary">Python</span>
-                        <span class="tags btn btn-outline-primary">CSS</span>
-                        <span class="tags btn btn-outline-success">HTML</span>
-                        <span class="tags btn btn-outline-danger">Django</span>
-                        <span class="tags btn btn-outline-warning">Firefox</span>
-                        <span class="tags btn btn-outline-dark">Mail.ru</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="question-title"><a href="">First Question</a></div>
+        <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
+            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+            has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+            software like Aldus PageMaker including versions of Lorem Ipsum.
 
-                    </div>
-                    <div style="margin-top: 50px;">
-                        <h2>Best members</h2>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="">pupkin</a></li>
-                            <li class="list-group-item"><a href="">zalupkin</a></li>
-                            <li class="list-group-item"><a href="">nagibkin</a></li>
-                            <li class="list-group-item"><a href="">sadipkin</a></li>
-                            <li class="list-group-item"><a href="">gadupkin</a></li>
-                        </ul>
-                    </div>
+            <div class="row">
+                <div class="col-md-auto">
+                    <a href="">answers (3)</a>
+                </div>
+                <div class="col-md-auto">
+                    Tags: <a href="">tag1</a> <a href="">tag2</a> <a href="">tag3</a>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>
+<div class="row question">
+    <div class="col-3">
+        <img src="../static/img/image.png" alt="" class="question-image">
 
-<nav aria-label="..." style="margin-top: 30px; margin-left: 70px">
-    <ul class="pagination">
-        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-        <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-</nav>
+        <div class="row">
+            <div class="col-6">
+                <div style="font-size: 35px; text-align:center;">4</div>
+            </div>
+            <div class="col-6" style="text-align:left;">
+                <div class="row">
+                    <img src="../static/img/arrow_up.svg" class="icon">
+                    <img src="../static/img/arrow_down.svg" class="icon">
+                </div>
 
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <span class="text-muted">2023</span>
+            </div>
+        </div>
     </div>
-</footer>
+    <div class="col-9">
+        <div class="question-title"><a href="">Second Question</a></div>
+        <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
+            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+            has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+            software like Aldus PageMaker including versions of Lorem Ipsum.
+
+            <div class="row">
+                <div class="col-md-auto">
+                    <a href="">answers (3)</a>
+                </div>
+                <div class="col-md-auto">
+                    Tags: <a href="">tag1</a> <a href="">tag2</a> <a href="">tag3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+<div class="row">
+    <div class="input-group mb-3 text_input">
+        <span class="input-group-text" id="title-desc">Title</span>
+        <input type="text" class="form-control" id="title" aria-describedby="title">
+    </div>
 
+    <div class="input-group text_input">
+        <span class="input-group-text">Text</span>
+        <textarea class="form-control" aria-label="text"></textarea>
+    </div>
 
-</body>
-</html>
+    <div class="input-group mb-3 text_input">
+        <span class="input-group-text" id="tags-desc">Tags</span>
+        <input type="text" class="form-control" id="tags" aria-describedby="tags">
+    </div>
+
+    <button type="button" class="btn btn-primary btn-lg" style="margin: 40px; max-width: 100px;">
+        Ask
+    </button>
+</div>
+<div class="row question">
+    <div class="col-3">
+        <img src="../static/img/image.png" alt="" class="question-image">
+
+        <div class="row">
+            <div class="col-6">
+                <div style="font-size: 35px; text-align:center;">4</div>
+            </div>
+            <div class="col-6" style="text-align:left;">
+                <div class="row">
+                    <img src="../static/img/arrow_up.svg" class="icon">
+                    <img src="../static/img/arrow_down.svg" class="icon">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="question-title"><a href="">Third Question</a></div>
+        <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
+            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+            has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+            software like Aldus PageMaker including versions of Lorem Ipsum.
+
+            <div class="row">
+                <div class="col-md-auto">
+                    <a href="">answers (3)</a>
+                </div>
+                <div class="col-md-auto">
+                    Tags: <a href="">tag1</a> <a href="">tag2</a> <a href="">tag3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

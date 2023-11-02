@@ -1,162 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Settings</title>
-</head>
+{% extends 'layouts/base.html' %}
 
-<head>
-    <title>Home</title>
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+{% block title %}
+<title>Settings</title>
+{% endblock %}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+{% block content %}
 
-
-
-
-
-    </style>
-
-    <!-- Custom styles for this template -->
-    <link href="../static/css/main.css" rel="stylesheet">
-</head>
-<body class="d-flex flex-column h-100">
-
-<header>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">AskMe</a>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-4 mb-md-0">
-                    <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Ask</button>
-                </ul>
-
-                <form class="d-flex">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-6">
-                                <img src="../static/img/image.png" alt="" class="avatar_mini">
-                            </div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="nav-item-text" style="margin:0px;">Dr. Pepper</div>
-                                    <div class="col-6">
-                                        <a class="nav-link active nav-item-href" aria-current="page"
-                                           href="#">settings</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="nav-link active nav-item-href" aria-current="page" href="#">log
-                                            out</a>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<main class="flex-shrink-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-8">
-                <div class="row">
-                    <div class="col-md-auto page-title">
-                        <h1>Settings</h1>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="input-group mb-3 text_input">
-                            <span class="input-group-text">Login</span>
-                            <input type="text" class="form-control" id="login" placeholder="dr_pepper">
-                        </div>
-                        <div class="input-group mb-3 text_input">
-                            <span class="input-group-text">Email</span>
-                            <input type="text" class="form-control" id="email" placeholder="dr_pepper@mail.ru">
-                        </div>
-
-                        <div class="input-group mb-3 text_input">
-                            <span class="input-group-text">NickName</span>
-                            <input type="text" class="form-control" id="nickname" placeholder="Dr. Pepper">
-                        </div>
-
-                        <img src="../static/img/image.png" alt="" class="avatar_mini" style="margin: 10px 40px; 10px">
-
-                        <div style="margin: 20px;">
-                            avatar.png
-                        </div>
-
-                        <button type="button" class="btn btn-secondary" style="margin: 40px; max-width: 100px;">
-                            Upload avatar
-                        </button>
-
-                        <button type="button" class="btn btn-primary" style="margin: 40px; max-width: 100px;">
-                            Save
-                        </button>
-
-
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col-4">
-                <div class="row" style="margin-left: 50px;">
-                    <h2>Popular tags</h2>
-                    <div>
-                        <span class="tags btn btn-outline-secondary">Python</span>
-                        <span class="tags btn btn-outline-primary">CSS</span>
-                        <span class="tags btn btn-outline-success">HTML</span>
-                        <span class="tags btn btn-outline-danger">Django</span>
-                        <span class="tags btn btn-outline-warning">Firefox</span>
-                        <span class="tags btn btn-outline-dark">Mail.ru</span>
-
-                    </div>
-                    <div style="margin-top: 50px;">
-                        <h2>Best members</h2>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="">pupkin</a></li>
-                            <li class="list-group-item"><a href="">zalupkin</a></li>
-                            <li class="list-group-item"><a href="">nagibkin</a></li>
-                            <li class="list-group-item"><a href="">sadipkin</a></li>
-                            <li class="list-group-item"><a href="">gadupkin</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-auto page-title">
+        <h1>Settings</h1>
     </div>
-</main>
 
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <span class="text-muted">2023</span>
+    <div class="row">
+
+        <div class="input-group mb-3 text_input">
+            <span class="input-group-text">Login</span>
+            <input type="text" class="form-control" id="login" placeholder="dr_pepper">
+        </div>
+        <div class="input-group mb-3 text_input">
+            <span class="input-group-text">Email</span>
+            <input type="text" class="form-control" id="email" placeholder="dr_pepper@mail.ru">
+        </div>
+
+        <div class="input-group mb-3 text_input">
+            <span class="input-group-text">NickName</span>
+            <input type="text" class="form-control" id="nickname" placeholder="Dr. Pepper">
+        </div>
+
+        <img src="../static/img/image.png" alt="" class="avatar_mini" style="margin: 10px 40px; 10px">
+
+        <div style="margin: 20px;">
+            avatar.png
+        </div>
+
+        <button type="button" class="btn btn-secondary" style="margin: 40px; max-width: 100px;">
+            Upload avatar
+        </button>
+
+        <button type="button" class="btn btn-primary" style="margin: 40px; max-width: 100px;">
+            Save
+        </button>
+
+
     </div>
-</footer>
 
-</body>
-</html>
+</div>
+
+{% endblock %}
