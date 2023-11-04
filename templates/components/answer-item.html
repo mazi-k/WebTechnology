@@ -1,0 +1,33 @@
+{% load static %}
+
+<div class="row answer">
+    <div class="col-3">
+        <img src="{% static '/img/image.png' %}" alt="" class="answer-image">
+
+        <div class="row">
+            <div class="col-6">
+                <div style="font-size: 25px; text-align:center;">4</div>
+            </div>
+            <div class="col-6" style="text-align:left;">
+                <div class="row">
+                    <img src="{% static '/img/arrow_up.svg' %}" class="icon-answer">
+                    <img src="{% static '/img/arrow_down.svg' %}" class="icon-answer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-9">
+        <div> {{ answer.content }}
+            <div class="row">
+                <div class="form-check" style="margin-top: 20px;">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label">
+                        Correct
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

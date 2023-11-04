@@ -1,5 +1,7 @@
 {% extends 'layouts/base.html' %}
 
+{% load static %}
+
 {% block title %}
 <title>Home</title>
 {% endblock %}
@@ -15,141 +17,11 @@
         <a href="">Hot questions</a>
     </div>
 </div>
-<div class="row question">
-    <div class="col-3">
-        <img src="../static/img/image.png" alt="" class="question-image">
 
-        <div class="row">
-            <div class="col-6">
-                <div style="font-size: 35px; text-align:center;">4</div>
-            </div>
-            <div class="col-6" style="text-align:left;">
-                <div class="row">
-                    <img src="../static/img/arrow_up.svg" class="icon">
-                    <img src="../static/img/arrow_down.svg" class="icon">
-                </div>
+{% for question in questions %}
 
-            </div>
-        </div>
-    </div>
-    <div class="col-9">
-        <div class="question-title"><a href="">First Question</a></div>
-        <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-            has survived not only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-            software like Aldus PageMaker including versions of Lorem Ipsum.
+{% include 'components/question-item.html' %}
 
-            <div class="row">
-                <div class="col-md-auto">
-                    <a href="">answers (3)</a>
-                </div>
-                <div class="col-md-auto">
-                    Tags: <a href="">tag1</a> <a href="">tag2</a> <a href="">tag3</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row question">
-    <div class="col-3">
-        <img src="../static/img/image.png" alt="" class="question-image">
-
-        <div class="row">
-            <div class="col-6">
-                <div style="font-size: 35px; text-align:center;">4</div>
-            </div>
-            <div class="col-6" style="text-align:left;">
-                <div class="row">
-                    <img src="../static/img/arrow_up.svg" class="icon">
-                    <img src="../static/img/arrow_down.svg" class="icon">
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-9">
-        <div class="question-title"><a href="">Second Question</a></div>
-        <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-            has survived not only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-            software like Aldus PageMaker including versions of Lorem Ipsum.
-
-            <div class="row">
-                <div class="col-md-auto">
-                    <a href="">answers (3)</a>
-                </div>
-                <div class="col-md-auto">
-                    Tags: <a href="">tag1</a> <a href="">tag2</a> <a href="">tag3</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="input-group mb-3 text_input">
-        <span class="input-group-text" id="title-desc">Title</span>
-        <input type="text" class="form-control" id="title" aria-describedby="title">
-    </div>
-
-    <div class="input-group text_input">
-        <span class="input-group-text">Text</span>
-        <textarea class="form-control" aria-label="text"></textarea>
-    </div>
-
-    <div class="input-group mb-3 text_input">
-        <span class="input-group-text" id="tags-desc">Tags</span>
-        <input type="text" class="form-control" id="tags" aria-describedby="tags">
-    </div>
-
-    <button type="button" class="btn btn-primary btn-lg" style="margin: 40px; max-width: 100px;">
-        Ask
-    </button>
-</div>
-<div class="row question">
-    <div class="col-3">
-        <img src="../static/img/image.png" alt="" class="question-image">
-
-        <div class="row">
-            <div class="col-6">
-                <div style="font-size: 35px; text-align:center;">4</div>
-            </div>
-            <div class="col-6" style="text-align:left;">
-                <div class="row">
-                    <img src="../static/img/arrow_up.svg" class="icon">
-                    <img src="../static/img/arrow_down.svg" class="icon">
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-9">
-        <div class="question-title"><a href="">Third Question</a></div>
-        <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-            has survived not only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-            software like Aldus PageMaker including versions of Lorem Ipsum.
-
-            <div class="row">
-                <div class="col-md-auto">
-                    <a href="">answers (3)</a>
-                </div>
-                <div class="col-md-auto">
-                    Tags: <a href="">tag1</a> <a href="">tag2</a> <a href="">tag3</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{% endfor %}
 
 {% endblock %}
