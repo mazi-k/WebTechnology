@@ -3,20 +3,17 @@
 {% load static %}
 
 {% block title %}
-<title>Home</title>
+<title>Hot questions</title>
 {% endblock %}
 
 {% block content %}
 
 <div class="row">
     <div class="col-md-auto page-title">
-        <h1>New questions</h1>
-    </div>
-
-    <div class="col-md-auto page-subtitle">
-        <a href="{% url 'hot' %}">Hot questions</a>
+        <h1>Hot questions</h1>
     </div>
 </div>
+
 
 {% for question in questions %}
 

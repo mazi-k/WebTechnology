@@ -62,3 +62,7 @@ def settings(request):
 
 def signup(request):
     return render(request, 'signup.html')
+
+
+def hot_questions(request):
+    return render(request, 'hot.html', {'questions': QUESTIONS, 'tags': TAGS})
