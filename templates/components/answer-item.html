@@ -10,8 +10,8 @@
             </div>
             <div class="col-6" style="text-align:left;">
                 <div class="row">
-                    <img src="{% static '/img/arrow_up.svg' %}" class="icon-answer">
-                    <img src="{% static '/img/arrow_down.svg' %}" class="icon-answer">
+                    <input type="image" src="{% static '/img/arrow_up.svg' %}" class="icon-answer"/>
+                    <input type="image" src="{% static '/img/arrow_down.svg' %}" class="icon-answer"/>
                 </div>
             </div>
         </div>
@@ -21,13 +21,10 @@
         <div> {{ answer.content }}
             <div class="row">
                 <div class="form-check" style="margin-top: 20px;">
-                    <input class="form-check-input" type="checkbox" value="">
-                    <label class="form-check-label">
-                        Correct
-                    </label>
+                    <input type="checkbox" id="{{ answer.id }}" class="form-check-input" value="">
+                    <label for="{{ answer.id }}" class="form-check-label"> Correct </label>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

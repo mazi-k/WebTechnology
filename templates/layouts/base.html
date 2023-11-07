@@ -34,32 +34,36 @@
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}">AskMe</a>
+            <a class="navbar-brand" href="{% url 'ask' %}">New ask</a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-4 mb-md-0">
+                <ul class="navbar-nav me-auto mb-4 mb-md-0" style="margin-left: 50px;">
                     <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Ask</button>
+                    <input type="image" src="{% static '/img/search.svg' %}" style="width: 25px;height: 25px; margin:5px;"/>
+
                 </ul>
 
                 <form class="d-flex">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-6">
-                                    <img src="../static/img/image.png" alt="" class="avatar_mini">
-                                </div>
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="nav-item-text" style="margin:0px;">Dr. Pepper</div>
-                                        <div class="col-6">
-                                            <a class="nav-link active nav-item-href" aria-current="page" href="{% url 'settings' %}">settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a class="nav-link active nav-item-href" aria-current="page" href="{% url 'login' %}">log
-                                                out</a>
-                                        </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <img src="../static/img/image.png" alt="" class="avatar_mini">
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="nav-item-text" style="margin:0px;">Dr. Pepper</div>
+                                    <div class="col-6">
+                                        <a class="nav-link active nav-item-href" aria-current="page"
+                                           href="{% url 'settings' %}">settings</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a class="nav-link active nav-item-href" aria-current="page"
+                                           href="{% url 'login' %}">log
+                                            out</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -79,6 +83,10 @@
                 <div class="row" style="margin-left: 50px;">
                     <h2>Popular tags</h2>
                     <div>
+                        {% for tag in tags %}
+                        <a class="tags btn btn-outline-info" href="{% url 'tag' tag.id %}">{{ tag.tag }}</a>
+                        {% endfor %}
+
                         <span class="tags btn btn-outline-secondary">Python</span>
                         <span class="tags btn btn-outline-primary">CSS</span>
                         <span class="tags btn btn-outline-success">HTML</span>
@@ -100,18 +108,13 @@
                 </div>
             </div>
         </div>
+
+        {% block pagination %}
+        {% endblock %}
+
     </div>
 </main>
 
-<nav aria-label="..." style="margin-top: 30px; margin-left: 70px">
-    <ul class="pagination">
-        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-        <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-</nav>
 
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">

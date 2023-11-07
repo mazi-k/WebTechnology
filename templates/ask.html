@@ -17,16 +17,29 @@
         <span class="input-group-text" id="title-desc">Title</span>
         <input type="text" class="form-control" id="title" aria-describedby="title">
     </div>
+    <div class="alert alert-danger" role="alert" style="margin-left: 30px; padding:5px;">
+            This title already exist. Try to find your question
+        </div>
+
+    <div class="alert alert-warning" role="alert" style="margin-left: 30px; padding:5px;">
+            The title must contain the text
+        </div>
 
     <div class="input-group text_input">
         <span class="input-group-text">Text</span>
         <textarea class="form-control" aria-label="text"></textarea>
     </div>
+    <div class="alert alert-warning" role="alert" style="margin-left: 30px; padding:5px;">
+            More information, please :)
+        </div>
 
     <div class="input-group mb-3 text_input">
         <span class="input-group-text" id="tags-desc">Tags</span>
         <input type="text" class="form-control" id="tags" aria-describedby="tags">
     </div>
+    <div class="alert alert-warning" role="alert" style="margin-left: 30px; padding:5px;">
+            Specify tags, this will help you find answers faster
+        </div>
 
     <button type="button" class="btn btn-primary btn-lg" style="margin: 40px; max-width: 100px;">
         Ask

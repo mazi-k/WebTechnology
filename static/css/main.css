@@ -91,3 +91,17 @@ main > .container {
 .text_input {
     margin: 20px;
 }
+
+.search-icon {
+    border: 1px solid grey;
+    padding: 5px;
+    margin:5px 5px 5px 5px;
+    width: 25px;
+    height: 25px;
+}
+
+
+label {
+   cursor: pointer;
+   font-weight: bold;
+}
