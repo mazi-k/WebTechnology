@@ -1,4 +1,4 @@
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 
 
@@ -26,7 +26,14 @@ def paginate(objects, page, per_page=10):
 def index(request):
     page = request.GET.get('page', 1)
 
-    return render(request, 'index.html', {'questions': paginate(QUESTIONS, page), 'tags': TAGS})
+    try:
+        questions = paginate(QUESTIONS, page)
+    except PageNotAnInteger:
+        questions = paginate(QUESTIONS, 1)
+    except EmptyPage:
+        questions = paginate(QUESTIONS, 1)
+
+    return render(request, 'index.html', {'questions': questions, 'tags': TAGS})
 
 
 def login(request):
@@ -40,7 +47,15 @@ def ask(request):
 def by_tag(request, tag_id):
     item_tag = TAGS[tag_id]
     page = request.GET.get('page', 1)
-    return render(request, 'by_tags.html', {'tag': item_tag, 'questions': paginate(QUESTIONS, page), 'tags': TAGS})
+
+    try:
+        questions = paginate(QUESTIONS, page)
+    except PageNotAnInteger:
+        questions = paginate(QUESTIONS, 1)
+    except EmptyPage:
+        questions = paginate(QUESTIONS, 1)
+
+    return render(request, 'by_tags.html', {'tag': item_tag, 'questions': questions, 'tags': TAGS})
 
 
 def question(request, question_id):
@@ -67,4 +82,12 @@ def signup(request):
 
 def hot_questions(request):
     page = request.GET.get('page', 1)
-    return render(request, 'hot.html', {'questions': paginate(QUESTIONS, page), 'tags': TAGS})
+
+    try:
+        questions = paginate(QUESTIONS, page)
+    except PageNotAnInteger:
+        questions = paginate(QUESTIONS, 1)
+    except EmptyPage:
+        questions = paginate(QUESTIONS, 1)
+
+    return render(request, 'hot.html', {'questions': questions, 'tags': TAGS})
