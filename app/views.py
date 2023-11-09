@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 
 
@@ -6,7 +7,7 @@ QUESTIONS = [
         'id': i,
         'title': f'Question {i}',
         'content': f'Long lorem ipsum {i}'
-    } for i in range(10)
+    } for i in range(35)
 ]
 
 TAGS = [
@@ -17,16 +18,15 @@ TAGS = [
 ]
 
 
-def index(request):
-    questions = [
-        {
-            'id': i,
-            'title': f'Question {i}',
-            'content': f'Long lorem ipsum {i}'
-        } for i in range(10)
-    ]
+def paginate(objects, page, per_page=10):
+    paginator = Paginator(objects, per_page)
+    return paginator.page(page)
 
-    return render(request, 'index.html', {'questions': questions, 'tags': TAGS})
+
+def index(request):
+    page = request.GET.get('page', 1)
+
+    return render(request, 'index.html', {'questions': paginate(QUESTIONS, page), 'tags': TAGS})
 
 
 def login(request):
@@ -39,7 +39,8 @@ def ask(request):
 
 def by_tag(request, tag_id):
     item_tag = TAGS[tag_id]
-    return render(request, 'by_tags.html', {'tag': item_tag, 'questions': QUESTIONS, 'tags': TAGS})
+    page = request.GET.get('page', 1)
+    return render(request, 'by_tags.html', {'tag': item_tag, 'questions': paginate(QUESTIONS, page), 'tags': TAGS})
 
 
 def question(request, question_id):
@@ -65,4 +66,5 @@ def signup(request):
 
 
 def hot_questions(request):
-    return render(request, 'hot.html', {'questions': QUESTIONS, 'tags': TAGS})
+    page = request.GET.get('page', 1)
+    return render(request, 'hot.html', {'questions': paginate(QUESTIONS, page), 'tags': TAGS})
