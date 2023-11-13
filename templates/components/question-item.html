@@ -26,7 +26,7 @@
             <div class="col-md-auto">
                 Tags:
                 {% for tag in tags %}
-                <a href="{% url 'tag' tag.id %}">{{ tag.tag }}</a>
+                <a href="{% url 'tag' tag.id %}">{{ tag.name }}</a>
                 {% endfor %}
             </div>
         </div>

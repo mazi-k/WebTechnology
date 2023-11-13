@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
+from .models import Question, Answer, get_best_members, get_popular_tags
 
 
 QUESTIONS = [
@@ -25,15 +26,18 @@ def paginate(objects, page, per_page=10):
 
 def index(request):
     page = request.GET.get('page', 1)
+    page_list = Question.objects.new_questions()
 
     try:
-        questions = paginate(QUESTIONS, page)
+        questions = paginate(page_list, page)
     except PageNotAnInteger:
-        questions = paginate(QUESTIONS, 1)
+        questions = paginate(page_list, 1)
     except EmptyPage:
-        questions = paginate(QUESTIONS, 1)
+        questions = paginate(page_list, 1)
 
-    return render(request, 'index.html', {'questions': questions, 'tags': TAGS})
+    return render(request, 'index.html', {'questions': questions,
+                                          'tags': get_popular_tags(),
+                                          'users': get_best_members()})
 
 
 def login(request):
@@ -82,12 +86,13 @@ def signup(request):
 
 def hot_questions(request):
     page = request.GET.get('page', 1)
+    page_list = Question.objects.hot_questions()
 
     try:
-        questions = paginate(QUESTIONS, page)
+        questions = paginate(page_list, page)
     except PageNotAnInteger:
-        questions = paginate(QUESTIONS, 1)
+        questions = paginate(page_list, 1)
     except EmptyPage:
-        questions = paginate(QUESTIONS, 1)
+        questions = paginate(page_list, 1)
 
     return render(request, 'hot.html', {'questions': questions, 'tags': TAGS})
