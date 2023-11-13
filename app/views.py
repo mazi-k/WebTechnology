@@ -8,16 +8,19 @@ def paginate(objects, page, per_page=10):
     return paginator.page(page)
 
 
-def index(request):
-    page = request.GET.get('page', 1)
-    page_list = Question.objects.new_questions()
-
+def errors_catcher(page_list, page):
     try:
         questions = paginate(page_list, page)
     except PageNotAnInteger:
         questions = paginate(page_list, 1)
     except EmptyPage:
         questions = paginate(page_list, 1)
+    return questions
+
+
+def index(request):
+    page = request.GET.get('page', 1)
+    questions = errors_catcher(Question.objects.new_questions(), page)
 
     return render(request, 'index.html', {'questions': questions,
                                           'popular_tags': get_popular_tags(),
@@ -35,19 +38,12 @@ def ask(request):
 
 
 def by_tag(request, tag_id):
-    tag = Tag.objects.get(id=tag_id)
-    by_tag_list = Question.objects.tag_questions(tag)
     page = request.GET.get('page', 1)
-
-    try:
-        questions = paginate(by_tag_list, page)
-    except PageNotAnInteger:
-        questions = paginate(by_tag_list, 1)
-    except EmptyPage:
-        questions = paginate(by_tag_list, 1)
+    tag = Tag.objects.get(id=tag_id)
+    questions_by_tag = errors_catcher(Question.objects.tag_questions(tag), page)
 
     return render(request, 'by_tags.html', {'tag': tag,
-                                            'questions': questions,
+                                            'questions': questions_by_tag,
                                             'popular_tags': get_popular_tags(),
                                             'best_members': get_best_members()})
 
@@ -74,14 +70,7 @@ def signup(request):
 
 def hot_questions(request):
     page = request.GET.get('page', 1)
-    page_list = Question.objects.hot_questions()
-
-    try:
-        questions = paginate(page_list, page)
-    except PageNotAnInteger:
-        questions = paginate(page_list, 1)
-    except EmptyPage:
-        questions = paginate(page_list, 1)
+    questions = errors_catcher(Question.objects.hot_questions(), page)
 
     return render(request, 'hot.html', {'questions': questions,
                                         'popular_tags': get_popular_tags(),
