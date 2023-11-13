@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="col-6">
-                <div style="font-size: 25px; text-align:center;">4</div>
+                <div style="font-size: 25px; text-align:center;">{{ answer.likes }}</div>
             </div>
             <div class="col-6" style="text-align:left;">
                 <div class="row">
@@ -18,12 +18,21 @@
     </div>
 
     <div class="col-9">
-        <div> {{ answer.content }}
+        <div> {{ answer.answer }}
             <div class="row">
                 <div class="form-check" style="margin-top: 20px;">
-                    <input type="checkbox" id="{{ answer.id }}" class="form-check-input" value="">
-                    <label for="{{ answer.id }}" class="form-check-label"> Correct </label>
+                    {% if answer.is_correct is True %}
+                        <input type="checkbox" id="{{ answer.id }}" class="form-check-input" checked value="">
+                        <label for="{{ answer.id }}" class="form-check-label"> Correct </label>
+                    {% else %}
+                        <input type="checkbox" id="{{ answer.id }}2" class="form-check-input" value="">
+                        <label for="{{ answer.id }}2" class="form-check-label"> Correct </label>
+                    {% endif %}
+
                 </div>
+                <div style="text-align:right;">{{ answer.timestamp }}</div>
+                <a style="text-align:right;" href="#">{{ answer.author }}</a>
+
             </div>
         </div>
     </div>

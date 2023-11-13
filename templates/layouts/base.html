@@ -23,6 +23,9 @@
       }
 
 
+
+
+
     </style>
 
     <!-- Custom styles for this template -->
@@ -85,21 +88,15 @@
                 <div class="row" style="margin-left: 50px;">
                     <h2>Popular tags</h2>
                     <div>
-                        {% for tag in tags %}
-                        <a class="tags btn btn-outline-info" href="{% url 'tag' tag.id %}">{{ tag.name }}</a>
+                        {% for tag in popular_tags %}
+                            <a class="tags btn btn-outline-info" href="{% url 'tag' tag.id %}">{{ tag.name }}</a>
                         {% endfor %}
-
-                        <span class="tags btn btn-outline-primary">CSS</span>
-                        <span class="tags btn btn-outline-success">HTML</span>
-                        <span class="tags btn btn-outline-danger">Django</span>
-                        <span class="tags btn btn-outline-warning">Firefox</span>
-                        <span class="tags btn btn-outline-dark">Mail.ru</span>
 
                     </div>
                     <div style="margin-top: 50px;">
                         <h2>Best members</h2>
                         <ul class="list-group">
-                            {% for user in users %}
+                            {% for user in best_members %}
                             <li class="list-group-item"><a href="">{{ user.user.username }}</a></li>
                             {% endfor %}
                         </ul>
