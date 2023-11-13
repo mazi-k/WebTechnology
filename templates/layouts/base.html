@@ -22,6 +22,10 @@
         }
       }
 
+
+
+
+
     </style>
 
     <!-- Custom styles for this template -->
@@ -38,7 +42,8 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-4 mb-md-0" style="margin-left: 50px;">
                     <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
-                    <input type="image" src="{% static '/img/search.svg' %}" style="width: 25px;height: 25px; margin:5px;"/>
+                    <input type="image" src="{% static '/img/search.svg' %}"
+                           style="width: 25px;height: 25px; margin:5px;"/>
 
                 </ul>
 
@@ -83,26 +88,17 @@
                 <div class="row" style="margin-left: 50px;">
                     <h2>Popular tags</h2>
                     <div>
-                        {% for tag in tags %}
-                        <a class="tags btn btn-outline-info" href="{% url 'tag' tag.id %}">{{ tag.tag }}</a>
+                        {% for tag in popular_tags %}
+                            <a class="tags btn btn-outline-info" href="{% url 'tag' tag.id %}">{{ tag.name }}</a>
                         {% endfor %}
-
-                        <span class="tags btn btn-outline-secondary">Python</span>
-                        <span class="tags btn btn-outline-primary">CSS</span>
-                        <span class="tags btn btn-outline-success">HTML</span>
-                        <span class="tags btn btn-outline-danger">Django</span>
-                        <span class="tags btn btn-outline-warning">Firefox</span>
-                        <span class="tags btn btn-outline-dark">Mail.ru</span>
 
                     </div>
                     <div style="margin-top: 50px;">
                         <h2>Best members</h2>
                         <ul class="list-group">
-                            <li class="list-group-item"><a href="">pupkin</a></li>
-                            <li class="list-group-item"><a href="">zalupkin</a></li>
-                            <li class="list-group-item"><a href="">nagibkin</a></li>
-                            <li class="list-group-item"><a href="">sadipkin</a></li>
-                            <li class="list-group-item"><a href="">gadupkin</a></li>
+                            {% for user in best_members %}
+                            <li class="list-group-item"><a href="">{{ user.user.username }}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>

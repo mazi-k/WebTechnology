@@ -5,7 +5,7 @@
         <img src="{% static '/img/image.png' %}" alt="" class="question-image">
         <div class="row">
             <div class="col-6">
-                <div style="font-size: 35px; text-align:center;">4</div>
+                <div style="font-size: 35px; text-align:center;">{{ question.likes }}</div>
             </div>
             <div class="col-6" style="text-align:left;">
                 <div class="row">
@@ -21,14 +21,16 @@
         <div class="question-text">{{ question.content }}</div>
         <div class="row">
             <div class="col-md-auto">
-                <a href="{% url 'question' question.id %}">answers (3)</a>
+                <a href="{% url 'question' question.id %}">answers {{question.answers_count}}</a>
             </div>
             <div class="col-md-auto">
                 Tags:
-                {% for tag in tags %}
-                <a href="{% url 'tag' tag.id %}">{{ tag.tag }}</a>
+                {% for tag in question.tag.all %}
+                <a href="{% url 'tag' tag.id %}">{{ tag.name }}</a>
                 {% endfor %}
             </div>
+            <div style="text-align:right; margin-top: 10px;">{{ question.timestamp }}</div>
+            <a style="text-align:right;" href="#">{{ question.author }}</a>
         </div>
     </div>
 </div>
