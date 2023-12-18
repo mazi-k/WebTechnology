@@ -36,7 +36,7 @@
 <header>
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}">AskMe</a>
             <a class="navbar-brand" href="{% url 'ask' %}">New ask</a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -44,33 +44,9 @@
                     <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
                     <input type="image" src="{% static '/img/search.svg' %}"
                            style="width: 25px;height: 25px; margin:5px;"/>
-
                 </ul>
-
-                <form class="d-flex">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-6">
-                                <img src="../static/img/image.png" alt="" class="avatar_mini">
-                            </div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="nav-item-text" style="margin:0px;">Dr. Pepper</div>
-                                    <div class="col-6">
-                                        <a class="nav-link active nav-item-href" aria-current="page"
-                                           href="{% url 'settings' %}">settings</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="nav-link active nav-item-href" aria-current="page"
-                                           href="{% url 'login' %}">log
-                                            out</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
             </div>
+            {% include 'components/user_corner.html' %}
         </div>
     </nav>
 </header>

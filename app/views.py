@@ -1,6 +1,13 @@
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib import auth
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+from django.views.decorators.http import require_http_methods
+
 from .models import Question, Answer, Tag, get_best_members, get_popular_tags
+from .forms import LoginForm, RegisterForm
 
 
 def paginate(objects, page, per_page=10):
@@ -27,8 +34,22 @@ def index(request):
                                           'best_members': get_best_members()})
 
 
-def login(request):
-    return render(request, 'login.html', {'popular_tags': get_popular_tags(),
+@csrf_exempt
+@require_http_methods(['GET', 'POST'])
+def log_in(request):
+    if request.method == "GET":
+        user_form = LoginForm()
+    if request.method == "POST":
+        user_form = LoginForm(request.POST)
+        if user_form.is_valid():
+            user = auth.authenticate(request=request, **user_form.cleaned_data)
+            if user:
+                auth.login(request, user)
+                return redirect(reverse('index'))
+            else:
+                user_form.add_error(field=None, error="Wrong username or password")
+    return render(request, 'login.html', {'form': user_form,
+                                          'popular_tags': get_popular_tags(),
                                           'best_members': get_best_members()})
 
 
@@ -63,8 +84,23 @@ def settings(request):
                                              'best_members': get_best_members()})
 
 
+@require_http_methods(['GET', 'POST'])
 def signup(request):
-    return render(request, 'signup.html', {'popular_tags': get_popular_tags(),
+    if request.method == "GET":
+        user_form = RegisterForm()
+
+    if request.method == 'POST':
+        user_form = RegisterForm(request.POST, request.FILES)
+        if user_form.is_valid():
+            user = user_form.save()
+            if user:
+                return redirect(reverse('login'))
+            else:
+                user_form.add_error(field=None, error="User saving error")
+
+
+    return render(request, 'signup.html', {'form': user_form,
+                                           'popular_tags': get_popular_tags(),
                                            'best_members': get_best_members()})
 
 
@@ -75,3 +111,9 @@ def hot_questions(request):
     return render(request, 'hot.html', {'questions': questions,
                                         'popular_tags': get_popular_tags(),
                                         'best_members': get_best_members()})
+
+
+@login_required
+def logout_view(request):
+    auth.logout(request)
+    return redirect(reverse('index'))

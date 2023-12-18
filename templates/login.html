@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load bootstrap5 %}
 
 {% block title %}
 <title>Login</title>
@@ -11,30 +12,40 @@
         <h1>Log In</h1>
     </div>
 
-    <div class="row">
+    {% if user.is_authenticated %}
+    <div class="alert alert-secondary">You are already logged in</div>
+    {% else %}
+    <form action="/login/" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form layout="horizontal" label_class="form-label col-sm-3" field_class="form-field col-sm-7" %}
 
-        <div class="input-group mb-3 text_input">
-            <span class="input-group-text">Login</span>
-            <input type="text" class="form-control" id="login" placeholder="your_login">
-        </div>
-        <div class="input-group mb-3 text_input">
-            <span class="input-group-text">Password</span>
-            <input type="password" class="form-control" id="password" placeholder="********">
-        </div>
-
-        <div class="alert alert-danger" role="alert" style="margin-left: 30px; padding:5px;">
-            Sorry, wrong password!
+        <div class="ask-button d-flex justify-content-center">
+            <button type="submit" class="btn btn-outline-light me-2">Log in</button>
         </div>
 
-        <button type="button" class="btn btn-primary" style="margin: 40px; max-width: 200px;">
-            Log in
-        </button>
+        <p class="text-center text-muted mt-5 mb-0">
+            You do not have an account? <a href="{% url 'signup' %}" class="fw-bold text-body"><u>Register
+            here</u></a>
+        </p>
 
-        <a class="btn btn-outline-secondary" href="{% url 'signup'%}" style="margin: 40px; max-width: 200px;">
-            Create account
-        </a>
+    </form>
+    {% endif %}
 
-    </div>
+
+<!--    <form method="post">-->
+<!--        <div class="mb-3">-->
+<!--            <label for="username" class="form-label">Username</label>-->
+<!--            <input type="text" class="form-control" name="username" id="username">-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="password" class="form-label">Password</label>-->
+<!--            <input type="password" name="password" class="form-control" id="password" placeholder="********">-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--        <a class="btn btn-outline-secondary" href="{% url 'signup'%}" style="margin: 40px; max-width: 200px;">-->
+<!--            Create account-->
+<!--        </a>-->
+<!--    </form>-->
 
 </div>
 

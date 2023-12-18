@@ -1,0 +1,48 @@
+{% load static %}
+{% if user.is_authenticated %}
+
+<form class="d-flex">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <img src="{{ user.profile.get_avatar }}" alt="" class="avatar_mini">
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="Nickname" style="margin:0px;">{{ user.username }}</div>
+                    <div class="col-6">
+                        <button type="button" class="btn"
+                                onclick="document.location='/settings'">settings
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn "
+                                onclick="document.location='/logout_view'">logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% else %}
+<div class="collapse navbar-collapse">
+    <div >
+        <div >
+            <button type="button" class="btn" onclick="document.location='/singnup'">SignUp
+            </button>
+        </div>
+        <div class="button-authorized">
+            <button type="button" class="btn" onclick="document.location='/login'">Login
+            </button>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+
+
+
