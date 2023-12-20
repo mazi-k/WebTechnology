@@ -102,3 +102,86 @@ class SettingsForm(forms.ModelForm):
         profile.save()
 
         return user
+
+
+class TagsFieldWidget(forms.MultiWidget):
+    def __init__(self, attrs=None):
+        widgets = [forms.TextInput(attrs={'placeholder': 'Enter tags separated by commas'})]
+        super(TagsFieldWidget, self).__init__(widgets, attrs)
+
+    def decompress(self, value):
+        if value:
+            return [value]
+        else:
+            return ['']
+
+
+class TagsField(forms.MultiValueField):
+    def __init__(self, *args, **kwargs):
+        fields = [forms.CharField()]
+        super(TagsField, self).__init__(fields, widget=TagsFieldWidget, *args, **kwargs)
+
+    def compress(self, values):
+        return values[0]
+
+
+class QuestionForm(forms.ModelForm):
+    tag = TagsField(label='Tags')
+
+    class Meta:
+        model = Question
+        fields = ('title', 'content', 'tag')
+
+        widgets = {
+            'title': forms.TextInput(),
+            'content': forms.Textarea(attrs={'placeholder': 'Enter your question', 'rows': 10}),
+        }
+
+    def clean_tags(self):
+        tag = self.cleaned_data['tag']
+        lst = tag.split(', ', maxsplit=3)
+        if len(lst) > 3:
+            raise forms.ValidationError('Post must contain no more than three tags')
+        for tag_instance in lst:
+            if ' ' in tag_instance:
+                raise forms.ValidationError('The tag contains a space')
+        return lst
+
+    def __init__(self, author, *args, **kwargs):
+        self.author = author
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        try:
+            tags_list = self.clean_tags()
+        except forms.ValidationError:
+            return
+
+        question = Question(title=self.cleaned_data['title'], content=self.cleaned_data['content'])
+        question.author = self.author
+        if commit:
+            question.save()
+            for tag_instance in tags_list:
+                print(tag_instance)
+                tag = Tag.objects.get(pk=tag_instance)
+                if not tag:
+                    tag = Tag.objects.create(name=tag_instance)
+                question.tag.add(tag.name)
+            question.save()
+        return question
+
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ('question_id', 'author', 'answer')
+
+        widgets = {
+            'question_id': forms.HiddenInput,
+            'author': forms.HiddenInput,
+            'answer': forms.Textarea(attrs={'placeholder': 'Enter your answer', 'rows': 6}),
+        }
+
+    def save(self, commit=True):
+        return Answer.objects.create(**self.cleaned_data)
+

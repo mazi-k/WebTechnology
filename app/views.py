@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 
 from .models import Question, Answer, Tag, get_best_members, get_popular_tags, Profile
-from .forms import LoginForm, RegisterForm, SettingsForm
+from .forms import LoginForm, RegisterForm, SettingsForm, QuestionForm, AnswerForm
 
 
 def paginate(objects, page, per_page=10):
@@ -55,7 +55,20 @@ def log_in(request):
 
 
 def ask(request):
-    return render(request, 'ask.html', {'popular_tags': get_popular_tags(),
+    if request.method == "GET":
+        question_form = QuestionForm(request.user.profile)
+
+    if request.method == 'POST':
+        question_form = QuestionForm(request.user.profile, data=request.POST)
+        if question_form.is_valid():
+            question_instance = question_form.save()
+            if question_instance:
+                return redirect('/question/' + str(question_instance.id))
+            else:
+                question_form.add_error(field=None, error="Enter tags separated by commas")
+
+    return render(request, 'ask.html', {'form': question_form,
+                                        'popular_tags': get_popular_tags(),
                                         'best_members': get_best_members()})
 
 
@@ -71,10 +84,29 @@ def by_tag(request, tag_id):
 
 
 def question(request, question_id):
+    initial_data = {'question': question_id, 'author': request.user.profile}
+    answer_form = {}
+
+    if request.method == "GET":
+        answer_form = AnswerForm(initial=initial_data)
+
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            answer_form = AnswerForm(initial=initial_data, data=request.POST)
+            if answer_form.is_valid():
+                answer = answer_form.save()
+                if answer:
+                    return redirect('/question/' + str(question_id))
+                else:
+                    answer_form.add_error(field=None, error="Answer saving error")
+        else:
+            answer_form.add_error(field=None, error="You not authenticated")
+
     question_item = get_object_or_404(Question.objects.questions(), pk=question_id)
     answers = Answer.objects.hot_answers().filter(question_id=question_id)
 
-    return render(request, 'question.html', {'question': question_item,
+    return render(request, 'question.html', {'form': answer_form,
+                                             'question': question_item,
                                              'answers': answers,
                                              'popular_tags': get_popular_tags(),
                                              'best_members': get_best_members()})

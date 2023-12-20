@@ -65,7 +65,7 @@
                     <h2>Popular tags</h2>
                     <div>
                         {% for tag in popular_tags %}
-                            <a class="tags btn btn-outline-info" href="{% url 'tag' tag.id %}">{{ tag.name }}</a>
+                            <a class="tags btn btn-outline-info" href="{% url 'tag' tag.name %}">{{ tag.name }}</a>
                         {% endfor %}
 
                     </div>
