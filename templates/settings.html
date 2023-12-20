@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load bootstrap5 %}
 
 {% block title %}
 <title>Settings</title>
@@ -12,29 +13,18 @@
     </div>
 
     <div class="row">
-
-        <div class="input-group mb-3 text_input">
-            <span class="input-group-text">Login</span>
-            <input type="text" class="form-control" id="login" placeholder="dr_pepper">
-        </div>
-        <div class="input-group mb-3 text_input">
-            <span class="input-group-text">Email</span>
-            <input type="text" class="form-control" id="email" placeholder="dr_pepper@mail.ru">
-        </div>
-
-        <div class="input-group mb-3 text_input">
-            <span class="input-group-text">NickName</span>
-            <input type="text" class="form-control" id="nickname" placeholder="Dr. Pepper">
-        </div>
-
-        <img src="../static/img/image.png" alt="" class="avatar_mini" style="margin: 10px 40px; 10px">
-
-        <div style="margin: 20px;">avatar.png</div>
-
-        <label for="upload-photo" style="margin-left: 20px;">Upload file</label>
-        <input type="file" name="photo" id="upload-photo" style="display: none;"/>
-
-        <button type="button" class="btn btn-primary" style="margin: 40px; max-width: 100px;"> Save</button>
+        <form action="/settings/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form layout="horizontal" label_class="form-label col-sm-3" field_class="form-field col-sm-7" %}
+                <div class="ask-button d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+            <div class="mb-4">
+                <div class="avatar">
+                    <img src="{{ request.user.profile.image.url }}" width="100px" alt="">
+                </div>
+            </div>
 
     </div>
 

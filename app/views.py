@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.forms import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -6,8 +7,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 
-from .models import Question, Answer, Tag, get_best_members, get_popular_tags
-from .forms import LoginForm, RegisterForm
+from .models import Question, Answer, Tag, get_best_members, get_popular_tags, Profile
+from .forms import LoginForm, RegisterForm, SettingsForm
 
 
 def paginate(objects, page, per_page=10):
@@ -79,9 +80,24 @@ def question(request, question_id):
                                              'best_members': get_best_members()})
 
 
+@login_required(login_url="login", redirect_field_name="continue")
+@require_http_methods(['GET', 'POST'])
 def settings(request):
-    return render(request, 'settings.html', {'popular_tags': get_popular_tags(),
-                                             'best_members': get_best_members()})
+    if request.method == "GET":
+        initial_data = model_to_dict(request.user)
+        user_form = SettingsForm(initial=initial_data)
+
+    if request.method == 'POST':
+        user_form = SettingsForm(request.POST, request.FILES, instance=request.user)
+        if user_form.is_valid():
+            Profile.objects.get_or_create(user=request.user)
+            user_form.save()
+            return redirect(reverse('index'))
+        else:
+            user_form.add_error(field=None, error="Invalid POST data")
+
+    return render(request, 'settings.html',
+                  {'form': user_form, 'best_members': get_best_members(), 'popular_tags': get_popular_tags()})
 
 
 @require_http_methods(['GET', 'POST'])
@@ -97,7 +113,6 @@ def signup(request):
                 return redirect(reverse('login'))
             else:
                 user_form.add_error(field=None, error="User saving error")
-
 
     return render(request, 'signup.html', {'form': user_form,
                                            'popular_tags': get_popular_tags(),
